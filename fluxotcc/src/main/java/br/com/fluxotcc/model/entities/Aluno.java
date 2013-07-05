@@ -3,10 +3,13 @@ package br.com.fluxotcc.model.entities;
 
 import java.io.Serializable;
 import javax.persistence.Column;
+import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.Table;
 
-
+@Entity
+@Table (name="aluno")
 public class Aluno implements Serializable{
     
     private static final long serialVersionUID = 1L;
@@ -27,17 +30,15 @@ public class Aluno implements Serializable{
    
     @Column (name="Email", nullable = false, length = 80 )
     private String email;
+    
+    @Column (name="CPF", nullable = false, length = 14 )
+    private String cpf;
    
     @Column (name="Periodo", nullable = true, length = 20 )
     private String periodo;
 
-    public Aluno(Integer idAluno, String nome, Integer matricula, String telefone, String email, String periodo) {
-        this.idAluno = idAluno;
-        this.nome = nome;
-        this.matricula = matricula;
-        this.telefone = telefone;
-        this.email = email;
-        this.periodo = periodo;
+    public Aluno() {
+       
     }
 
     public Integer getIdAluno() {
