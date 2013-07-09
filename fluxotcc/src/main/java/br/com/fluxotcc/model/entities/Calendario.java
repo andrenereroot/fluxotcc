@@ -6,10 +6,14 @@ import java.util.Calendar;
 import javax.annotation.Generated;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
+import org.hibernate.annotations.ForeignKey;
 
 @Entity
 @Table(name ="calendario")
@@ -44,6 +48,13 @@ public class Calendario implements Serializable{
     
     @Column (name="Recorrencia", nullable = false, length = 80 )
     private String recorrencia;
+    
+    
+    //relacionamento entre tipo de calendario e tipoUsuario
+    @ManyToOne(optional=true, fetch = FetchType.LAZY)
+    @ForeignKey(name = "CalendarioTipoUsuario") 
+    @JoinColumn(name="IdTipoUsuario", referencedColumnName = "IdTipoUsuario")
+    private TipoUsuario tipoUsuario;
 
     public Calendario() {
     }
@@ -112,6 +123,16 @@ public class Calendario implements Serializable{
         this.recorrencia = recorrencia;
     }
 
+    public TipoUsuario getTipoUsuario() {
+        return tipoUsuario;
+    }
+
+    public void setTipoUsuario(TipoUsuario tipoUsuario) {
+        this.tipoUsuario = tipoUsuario;
+    }
+
+    
+    
     @Override
     public int hashCode() {
         int hash = 3;

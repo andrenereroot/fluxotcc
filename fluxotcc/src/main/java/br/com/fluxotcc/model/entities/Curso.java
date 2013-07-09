@@ -2,11 +2,15 @@
 package br.com.fluxotcc.model.entities;
 
 import java.io.Serializable;
+import java.util.List;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import org.hibernate.annotations.ForeignKey;
 @Entity
 @Table(name = "curso")
 public class Curso implements Serializable{
@@ -24,6 +28,12 @@ public class Curso implements Serializable{
     
     @Column(name="Turno", length = 20, nullable = true)
     private String nomeTurno; 
+    
+    
+    //relacionamento entre curso e aluno
+    @OneToMany(mappedBy = "curso", fetch = FetchType.LAZY)
+    @ForeignKey(name = "AlunoCurso")
+    private List<Aluno> alunos;
 
     public Curso() {
     }
@@ -52,6 +62,16 @@ public class Curso implements Serializable{
         this.nomeTurno = nomeTurno;
     }
 
+    public List<Aluno> getAlunos() {
+        return alunos;
+    }
+
+    public void setAlunos(List<Aluno> alunos) {
+        this.alunos = alunos;
+    }
+
+    
+    
     @Override
     public int hashCode() {
         int hash = 5;

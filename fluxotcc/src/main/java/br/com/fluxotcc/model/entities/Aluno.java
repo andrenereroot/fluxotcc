@@ -2,6 +2,7 @@
 package br.com.fluxotcc.model.entities;
 
 import java.io.Serializable;
+import java.util.List;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -9,6 +10,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import org.hibernate.annotations.ForeignKey;
 
@@ -41,12 +43,30 @@ public class Aluno implements Serializable{
     @Column (name="Periodo", nullable = true, length = 20 )
     private String periodo;
     
+    //relacionamento entre aluno e processo
+    @OneToMany(mappedBy = "aluno", fetch = FetchType.LAZY)
+    @ForeignKey(name = "AlunoProcesso")
+    private List<Processo> processos;
+    
     
     //relacionamento entre aluno e campi
     @ManyToOne(optional=false, fetch = FetchType.LAZY)
     @ForeignKey(name = "AlunoCampi") 
     @JoinColumn(name="IdCampi", referencedColumnName = "IdCampi")
     private Campi campi;
+    
+    //relacionamento entre aluno e turno
+    @ManyToOne(optional=true, fetch = FetchType.LAZY)
+    @ForeignKey(name = "TurnoAluno") 
+    @JoinColumn(name="IdTurno", referencedColumnName = "IdTurno")
+    private Turno turno;
+    
+    
+    //relacionamento entre aluno e curso
+    @ManyToOne(optional=true, fetch = FetchType.LAZY)
+    @ForeignKey(name = "AlunoCurso") 
+    @JoinColumn(name="IdCurso", referencedColumnName = "IdCurso")
+    private Curso curso;
 
     public Aluno() {
        
@@ -114,6 +134,22 @@ public class Aluno implements Serializable{
 
     public void setCampi(Campi campi) {
         this.campi = campi;
+    }
+
+    public Turno getTurno() {
+        return turno;
+    }
+
+    public void setTurno(Turno turno) {
+        this.turno = turno;
+    }
+
+    public Curso getCurso() {
+        return curso;
+    }
+
+    public void setCurso(Curso curso) {
+        this.curso = curso;
     }
 
     

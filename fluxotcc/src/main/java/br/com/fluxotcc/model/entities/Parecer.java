@@ -36,6 +36,13 @@ public class Parecer implements Serializable{
     @ForeignKey(name = "UsuarioParecer") 
     @JoinColumn(name="IdUsuario", referencedColumnName = "IdUsuario")
     private Usuario usuario;
+    
+    
+    //relacionamento entre precesso e parecer
+    @ManyToOne(optional=false, fetch = FetchType.LAZY)
+    @ForeignKey(name = "ProcessoParecer") 
+    @JoinColumn(name="IdProcesso", referencedColumnName = "IdProcesso")
+    private Processo processo;
 
     public Parecer() {
     }
@@ -70,6 +77,14 @@ public class Parecer implements Serializable{
 
     public void setUsuario(Usuario usuario) {
         this.usuario = usuario;
+    }
+
+    public Processo getProcesso() {
+        return processo;
+    }
+
+    public void setProcesso(Processo processo) {
+        this.processo = processo;
     }
 
     

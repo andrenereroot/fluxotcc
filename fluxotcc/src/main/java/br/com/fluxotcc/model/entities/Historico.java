@@ -5,10 +5,14 @@ import java.io.Serializable;
 import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
+import org.hibernate.annotations.ForeignKey;
 
 @Entity
 @Table (name="historico")
@@ -31,6 +35,26 @@ public class Historico implements Serializable{
      
      @Column(name="Ocorrencia",nullable = false,  length = 800 )
      private String ocorrencia;
+     
+     
+     //relacionamento entre localizacao e histórico
+     @ManyToOne(optional=true, fetch = FetchType.LAZY)
+     @ForeignKey(name = "HistoricoLocalizacao") 
+     @JoinColumn(name="IdLocalizacao", referencedColumnName = "IdLocalizacao")
+     private Localizacao localizacao;
+     
+     
+     //relacionamento entre tipo de usuario e histórico
+     @ManyToOne(optional=true, fetch = FetchType.LAZY)
+     @ForeignKey(name = "HistoricoTipoUsuario") 
+     @JoinColumn(name="IdTipoUsuario", referencedColumnName = "IdTipoUsuario")
+     private TipoUsuario tipoUsuario;
+     
+     //relacionamento entre tipo de setor e histórico
+     @ManyToOne(optional=true, fetch = FetchType.LAZY)
+     @ForeignKey(name = "HistoricoSetor") 
+     @JoinColumn(name="IdSetor", referencedColumnName = "IdSetor")
+     private Setor setor;
 
     public Historico() {
     }
@@ -67,6 +91,33 @@ public class Historico implements Serializable{
         this.ocorrencia = ocorrencia;
     }
 
+    public Localizacao getLocalizacao() {
+        return localizacao;
+    }
+
+    public void setLocalizacao(Localizacao localizacao) {
+        this.localizacao = localizacao;
+    }
+
+    public TipoUsuario getTipoUsuario() {
+        return tipoUsuario;
+    }
+
+    public void setTipoUsuario(TipoUsuario tipoUsuario) {
+        this.tipoUsuario = tipoUsuario;
+    }
+
+    public Setor getSetor() {
+        return setor;
+    }
+
+    public void setSetor(Setor setor) {
+        this.setor = setor;
+    }
+
+    
+    
+    
     @Override
     public int hashCode() {
         int hash = 7;

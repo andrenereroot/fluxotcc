@@ -2,11 +2,15 @@
 package br.com.fluxotcc.model.entities;
 
 import java.io.Serializable;
+import java.util.List;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import org.hibernate.annotations.ForeignKey;
 
 @Entity
 @Table(name="status")
@@ -21,6 +25,12 @@ private Integer idStatus;
 
 @Column(name="NomeStatus", length = 20, nullable = true)
 private String nomeStatus;
+
+
+ //relacionamento entre processo e status
+    @OneToMany(mappedBy = "status", fetch = FetchType.LAZY)
+    @ForeignKey(name = "ProcessoStatus")
+    private List<Processo> processos;
 
     public Status() {
     }
@@ -41,6 +51,16 @@ private String nomeStatus;
         this.nomeStatus = nomeStatus;
     }
 
+    public List<Processo> getProcessos() {
+        return processos;
+    }
+
+    public void setProcessos(List<Processo> processos) {
+        this.processos = processos;
+    }
+
+    
+    
     @Override
     public int hashCode() {
         int hash = 3;

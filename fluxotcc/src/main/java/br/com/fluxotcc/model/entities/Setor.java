@@ -2,11 +2,15 @@
 package br.com.fluxotcc.model.entities;
 
 import java.io.Serializable;
+import java.util.List;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import org.hibernate.annotations.ForeignKey;
 
 @Entity
 @Table(name = "setor")
@@ -21,6 +25,17 @@ public class Setor implements Serializable{
     
     @Column (name="NomeSetor", nullable = false, length = 80 )
     private String nomeSetor;
+    
+    
+   //relacionamento entre setor  e localizacao
+   @OneToMany(mappedBy = "setor", fetch = FetchType.LAZY)
+   @ForeignKey(name = "SetorLocalizacao")
+   private List<Localizacao> localizacoes;
+   
+   //relacionamento entre setor  e histórico
+   @OneToMany(mappedBy = "setor", fetch = FetchType.LAZY)
+   @ForeignKey(name = "HistoricoSetor")
+   private List<Historico> historicos;
 
     public Setor() {
     }
@@ -41,6 +56,24 @@ public class Setor implements Serializable{
         this.nomeSetor = nomeSetor;
     }
 
+    public List<Localizacao> getLocalizacoes() {
+        return localizacoes;
+    }
+
+    public void setLocalizacoes(List<Localizacao> localizacoes) {
+        this.localizacoes = localizacoes;
+    }
+
+    public List<Historico> getHistoricos() {
+        return historicos;
+    }
+
+    public void setHistoricos(List<Historico> historicos) {
+        this.historicos = historicos;
+    }
+
+    
+    
     @Override
     public int hashCode() {
         int hash = 5;
