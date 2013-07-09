@@ -2,11 +2,17 @@
 package br.com.fluxotcc.model.entities;
 
 import java.io.Serializable;
+import java.util.List;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import org.hibernate.annotations.ForeignKey;
 
 @Entity
 @Table(name = "usuario")
@@ -32,6 +38,17 @@ public class Usuario implements Serializable{
     
     @Column (name="CPF", nullable = false, length = 14 )
     private String cpf;
+    
+    //relacionamento entre  usuario parecer
+    @OneToMany(mappedBy = "usuario", fetch = FetchType.LAZY)
+    @ForeignKey(name = "UsuarioParecer")
+    private List<Parecer> pareceres;
+    
+    @ManyToOne(optional=false)
+    @ForeignKey(name = "CidadeUsuario") 
+    @JoinColumn(name="IdCidade", referencedColumnName = "IdCidade")
+    private Cidade cidade;
+    
 
     public Usuario() {
     }
@@ -84,6 +101,24 @@ public class Usuario implements Serializable{
         this.cpf = cpf;
     }
 
+    public List<Parecer> getPareceres() {
+        return pareceres;
+    }
+
+    public void setPareceres(List<Parecer> pareceres) {
+        this.pareceres = pareceres;
+    }
+
+    public Cidade getCidade() {
+        return cidade;
+    }
+
+    public void setCidade(Cidade cidade) {
+        this.cidade = cidade;
+    }
+
+    
+    
     @Override
     public int hashCode() {
         int hash = 7;

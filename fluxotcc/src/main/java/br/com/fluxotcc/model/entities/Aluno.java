@@ -4,9 +4,13 @@ package br.com.fluxotcc.model.entities;
 import java.io.Serializable;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import org.hibernate.annotations.ForeignKey;
 
 @Entity
 @Table (name="aluno")
@@ -36,6 +40,13 @@ public class Aluno implements Serializable{
    
     @Column (name="Periodo", nullable = true, length = 20 )
     private String periodo;
+    
+    
+    //relacionamento entre aluno e campi
+    @ManyToOne(optional=false, fetch = FetchType.LAZY)
+    @ForeignKey(name = "AlunoCampi") 
+    @JoinColumn(name="IdCampi", referencedColumnName = "IdCampi")
+    private Campi campi;
 
     public Aluno() {
        
@@ -89,6 +100,24 @@ public class Aluno implements Serializable{
         this.periodo = periodo;
     }
 
+    public String getCpf() {
+        return cpf;
+    }
+
+    public void setCpf(String cpf) {
+        this.cpf = cpf;
+    }
+
+    public Campi getCampi() {
+        return campi;
+    }
+
+    public void setCampi(Campi campi) {
+        this.campi = campi;
+    }
+
+    
+    
     @Override
     public int hashCode() {
         int hash = 7;
