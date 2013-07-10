@@ -2,11 +2,17 @@
 package br.com.fluxotcc.model.entities;
 
 import java.io.Serializable;
+import java.util.List;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.Table;
+import org.hibernate.annotations.ForeignKey;
 
 @Entity
 @Table(name = "funcao")
@@ -21,6 +27,13 @@ private Integer idFuncao;
 
 @Column (name="Funcao", nullable = false, length = 30 )
 private String funcao;
+
+ //RELACIONAMENTO MUITOS PARA MUITOS ENTRE USUARIOS E FUNCAO
+ @ManyToMany(fetch= FetchType.LAZY) 
+ @ForeignKey(name = "UsuarioFuncao")
+ @JoinTable(name = "Usuario_Funcao")
+ @JoinColumn(name = "IdUsuario",referencedColumnName = "IdUsuario" )
+ private List<Usuario> usuarios;
 
     public Funcao() {
     }

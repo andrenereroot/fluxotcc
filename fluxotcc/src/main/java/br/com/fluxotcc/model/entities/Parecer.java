@@ -44,8 +44,15 @@ public class Parecer implements Serializable{
     @JoinColumn(name="IdProcesso", referencedColumnName = "IdProcesso")
     private Processo processo;
 
-    public Parecer() {
+    public Parecer(Integer idParecer, String justificativa, TipoParecer tipoParecer, Usuario usuario, Processo processo) {
+        this.idParecer = idParecer;
+        this.justificativa = justificativa;
+        this.tipoParecer = tipoParecer;
+        this.usuario = usuario;
+        this.processo = processo;
     }
+
+    
 
     public Integer getIdParecer() {
         return idParecer;

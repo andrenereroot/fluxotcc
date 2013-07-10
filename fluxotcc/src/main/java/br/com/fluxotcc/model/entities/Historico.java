@@ -10,6 +10,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import org.hibernate.annotations.ForeignKey;
@@ -35,6 +36,12 @@ public class Historico implements Serializable{
      
      @Column(name="Ocorrencia",nullable = false,  length = 800 )
      private String ocorrencia;
+     
+     //Relacionamento um para um de historico com processo
+     @OneToOne(optional=false, fetch= FetchType.LAZY)
+     @ForeignKey(name="HistoricoProcesso")
+     @JoinColumn(name = "IdProcesso", referencedColumnName = "IdProcesso")
+     private Processo processo;
      
      
      //relacionamento entre localizacao e histórico
@@ -113,6 +120,14 @@ public class Historico implements Serializable{
 
     public void setSetor(Setor setor) {
         this.setor = setor;
+    }
+
+    public Processo getProcesso() {
+        return processo;
+    }
+
+    public void setProcesso(Processo processo) {
+        this.processo = processo;
     }
 
     

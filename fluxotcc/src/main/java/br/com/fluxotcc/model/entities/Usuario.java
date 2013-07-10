@@ -9,6 +9,8 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
@@ -49,9 +51,31 @@ public class Usuario implements Serializable{
     @JoinColumn(name="IdCidade", referencedColumnName = "IdCidade")
     private Cidade cidade;
     
+    //RELACIONAMENTO MUITOS PARA MUITOS ENTRE USUARIOS E FUNCAO
+    @ManyToMany(mappedBy ="usuario",fetch = FetchType.LAZY )
+    @ForeignKey(name = "UsuarioFuncao")
+    @JoinTable(name = "Usuario_Funcao")
+    @JoinColumn(name = "IdFuncao",referencedColumnName = "IdFuncao" )
+    private List<Funcao> funcoes;
 
     public Usuario() {
     }
+
+    
+    
+    public Usuario(Integer idUsuario, String login, String senha, String email, String nome, String cpf, List<Parecer> pareceres, Cidade cidade) {
+        this.idUsuario = idUsuario;
+        this.login = login;
+        this.senha = senha;
+        this.email = email;
+        this.nome = nome;
+        this.cpf = cpf;
+        this.pareceres = pareceres;
+        this.cidade = cidade;
+    }
+    
+
+   
 
     public Integer getIdUsuario() {
         return idUsuario;

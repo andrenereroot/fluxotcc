@@ -11,6 +11,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import org.hibernate.annotations.ForeignKey;
 
@@ -28,7 +29,12 @@ private Integer idProcesso;
 @Column(name = "Justificativa", length = 2000)
 private String justificativa;
 
+//Relacionamento um para um de historico com processo
+@OneToOne(mappedBy = "processo", fetch = FetchType.LAZY)
+@ForeignKey(name="HistoricoProcesso")
+private Historico historico;
 
+ 
 //relacionamento entre processo e parecer
 @OneToMany(mappedBy = "processo", fetch = FetchType.LAZY)
 @ForeignKey(name = "ProcessoParecer")
@@ -103,6 +109,14 @@ private List<Parecer> pareceres;
 
     public void setPareceres(List<Parecer> pareceres) {
         this.pareceres = pareceres;
+    }
+
+    public Historico getHistorico() {
+        return historico;
+    }
+
+    public void setHistorico(Historico historico) {
+        this.historico = historico;
     }
 
     

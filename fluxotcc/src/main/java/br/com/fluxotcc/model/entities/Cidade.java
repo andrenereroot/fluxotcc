@@ -47,6 +47,8 @@ public class Cidade {
     public Cidade() {
     }
 
+   
+
     public Integer getIdCidade() {
         return idCidade;
     }
