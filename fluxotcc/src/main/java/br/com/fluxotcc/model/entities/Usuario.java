@@ -52,12 +52,13 @@ public class Usuario implements Serializable{
     private Cidade cidade;
     
     //RELACIONAMENTO MUITOS PARA MUITOS ENTRE USUARIOS E FUNCAO
-    @ManyToMany(mappedBy ="usuario",fetch = FetchType.LAZY )
+   
+   /* @ManyToMany(fetch = FetchType.LAZY )
     @ForeignKey(name = "UsuarioFuncao")
     @JoinTable(name = "Usuario_Funcao")
     @JoinColumn(name = "IdFuncao",referencedColumnName = "IdFuncao" )
-    private List<Funcao> funcoes;
-
+    private List<Funcao> funcoes; */
+    
     public Usuario() {
     }
 

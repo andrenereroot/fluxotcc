@@ -55,7 +55,7 @@ public class Historico implements Serializable{
      @ManyToOne(optional=true, fetch = FetchType.LAZY)
      @ForeignKey(name = "HistoricoTipoUsuario") 
      @JoinColumn(name="IdTipoUsuario", referencedColumnName = "IdTipoUsuario")
-     private TipoUsuario tipoUsuario;
+     private TipoUsuario tipousuario;
      
      //relacionamento entre tipo de setor e histórico
      @ManyToOne(optional=true, fetch = FetchType.LAZY)
@@ -106,13 +106,15 @@ public class Historico implements Serializable{
         this.localizacao = localizacao;
     }
 
-    public TipoUsuario getTipoUsuario() {
-        return tipoUsuario;
+    public TipoUsuario getTipousuario() {
+        return tipousuario;
     }
 
-    public void setTipoUsuario(TipoUsuario tipoUsuario) {
-        this.tipoUsuario = tipoUsuario;
+    public void setTipousuario(TipoUsuario tipousuario) {
+        this.tipousuario = tipousuario;
     }
+
+  
 
     public Setor getSetor() {
         return setor;

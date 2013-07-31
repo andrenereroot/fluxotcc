@@ -54,7 +54,7 @@ public class Calendario implements Serializable{
     @ManyToOne(optional=true, fetch = FetchType.LAZY)
     @ForeignKey(name = "CalendarioTipoUsuario") 
     @JoinColumn(name="IdTipoUsuario", referencedColumnName = "IdTipoUsuario")
-    private TipoUsuario tipoUsuario;
+    private TipoUsuario tipousuario;
 
     public Calendario() {
     }
@@ -123,14 +123,15 @@ public class Calendario implements Serializable{
         this.recorrencia = recorrencia;
     }
 
-    public TipoUsuario getTipoUsuario() {
-        return tipoUsuario;
+    public TipoUsuario getTipousuario() {
+        return tipousuario;
     }
 
-    public void setTipoUsuario(TipoUsuario tipoUsuario) {
-        this.tipoUsuario = tipoUsuario;
+    public void setTipousuario(TipoUsuario tipousuario) {
+        this.tipousuario = tipousuario;
     }
 
+  
     
     
     @Override

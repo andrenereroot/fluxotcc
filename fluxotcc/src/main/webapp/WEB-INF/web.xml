@@ -8,7 +8,7 @@
     
     <welcome-file-list>
         <welcome-file>index.jsp</welcome-file>
-        <!--        <welcome-file>index.html</welcome-file>
+        <!--      <welcome-file>index.html</welcome-file>
         <welcome-file>index.htm</welcome-file>-->
     </welcome-file-list>
     
@@ -32,7 +32,7 @@
     </context-param> 
 
 
-<!-- Configurações do tema do PrimeFaces -->
+    <!-- Configurações do tema do PrimeFaces -->
     <context-param>  
         <param-name>primefaces.THEME</param-name>  
         <param-value>sam</param-value>  
@@ -40,7 +40,7 @@
     
     
     <!-- Filtros do Spring   ESTÁ DANDO PROBLEMA DESCOMENTE DEPOIS-->
-  <!--  <listener>
+    <!--  <listener>
         <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
     </listener>
     <filter>
@@ -93,9 +93,9 @@
         <url-pattern>/primefaces_resource/*</url-pattern>
     </servlet-mapping>
     
-     <!-- Filtros de Upload -->
+    <!-- Filtros de Upload -->
     
-<!--    <filter>  
+    <!--    <filter>  
         <filter-name>PrimeFaces FileUpload Filter</filter-name>  
         <filter-class>org.primefaces.webapp.filter.FileUploadFilter</filter-class>  
     </filter>  
@@ -105,4 +105,4 @@
     </filter-mapping> -->
     
     
- </web-app>
+</web-app>

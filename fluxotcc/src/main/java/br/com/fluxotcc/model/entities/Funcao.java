@@ -29,12 +29,19 @@ private Integer idFuncao;
 private String funcao;
 
  //RELACIONAMENTO MUITOS PARA MUITOS ENTRE USUARIOS E FUNCAO
- @ManyToMany(fetch= FetchType.LAZY) 
+ /*@ManyToMany(fetch= FetchType.LAZY) 
  @ForeignKey(name = "UsuarioFuncao")
  @JoinTable(name = "Usuario_Funcao")
  @JoinColumn(name = "IdUsuario",referencedColumnName = "IdUsuario" )
- private List<Usuario> usuarios;
+ private List<Usuario> usuarios;*/
 
+
+    @ManyToMany
+    @JoinTable(name = "Usuario_Funcao",
+    joinColumns =@JoinColumn(name ="IdFuncao"),
+    inverseJoinColumns=@JoinColumn(name ="IdUsuario"))
+    private List<Usuario> usuarios;
+ 
     public Funcao() {
     }
 

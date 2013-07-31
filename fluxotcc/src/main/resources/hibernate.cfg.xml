@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-configuration PUBLIC
+    "-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+    <session-factory name="session">
+        
+        <!-- CONFIGURAÇÕES DE CONEXÃO COM O BD -->
+        
+        <property name="hibernate.connection.driver_class">org.postgresql.Driver</property><!-- Defino o driver de conexão com o bd -->
+        <property name="hibernate.connection.url">jdbc:postgresql://localhost:5432/fluxotcc_db?createDatabaseIfNotExist=true</property>
+        <property name="hibernate.connection.username">postgres</property>
+        <property name="hibernate.connection.password">123</property>
+        <property name="hibernate.dialect">org.hibernate.dialect.PostgreSQLDialect</property>
+        
+        <!-- HABILITA A EXIBIÇÃO DO SQL GERADO PELO HIBERNATE E FORMATA-O -->
+        
+        <property name="hibernate.show_sql">true</property>
+        <property name="hibernate.format_sql">true</property>
+        
+        <!-- HABILITA A ATUALIZAÇÃO AUTOMÁTICA DA ESTRUTURA DE TABELAS PELO HIBERNATE -->
+        
+        <property name="hibernate.hbm2ddl.auto">update</property>
+        
+        <!-- CONFIGURAÇÕES DO POOL DE CONEXÕES-->
+        
+        <property name="c3p0.min_size">1</property>
+        <property name="c3p0.max_size">40</property>
+        <property name="c3p0.timeout">300</property>
+        <property name="c3p0.max_statements">80</property>
+        <property name="c3p0.idle_test_period">300</property>
+        
+  
+        
+        <!-- LISTA DE ENTIDADES -->
+        
+        <mapping class="br.com.fluxotcc.model.entities.Aluno"/>        
+        <mapping class="br.com.fluxotcc.model.entities.Calendario"/>
+        <mapping class="br.com.fluxotcc.model.entities.Campi"/>  
+        <mapping class="br.com.fluxotcc.model.entities.Cidade"/>  
+        <mapping class="br.com.fluxotcc.model.entities.Curso"/>  
+        <mapping class="br.com.fluxotcc.model.entities.Funcao"/>  
+        <mapping class="br.com.fluxotcc.model.entities.Historico"/>  
+        <mapping class="br.com.fluxotcc.model.entities.Localizacao"/>
+        <mapping class="br.com.fluxotcc.model.entities.Parecer"/>        
+        <mapping class="br.com.fluxotcc.model.entities.Prioridade"/>
+        <mapping class="br.com.fluxotcc.model.entities.Processo"/>  
+        <mapping class="br.com.fluxotcc.model.entities.Setor"/>  
+        <mapping class="br.com.fluxotcc.model.entities.Status"/>  
+        <mapping class="br.com.fluxotcc.model.entities.TipoParecer"/>  
+        <mapping class="br.com.fluxotcc.model.entities.TipoSolicitacao"/>  
+        <mapping class="br.com.fluxotcc.model.entities.TipoUsuario"/> 
+        <mapping class="br.com.fluxotcc.model.entities.Turno"/> 
+        <mapping class="br.com.fluxotcc.model.entities.UF"/>
+        <mapping class="br.com.fluxotcc.model.entities.Usuario"/>  
+        
+      
+       
+    </session-factory>
+</hibernate-configuration>

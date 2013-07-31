@@ -29,7 +29,7 @@ public class Parecer implements Serializable{
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
     @ForeignKey(name = "ParecerTipoParecer")
     @JoinColumn(name = "IdTipoParecer", referencedColumnName = "IdTipoParecer")
-    private TipoParecer tipoParecer;
+    private TipoParecer tipoparecer;
     
     //relacionamento entre usuario e parecer
     @ManyToOne(optional=false, fetch = FetchType.LAZY)
@@ -47,9 +47,12 @@ public class Parecer implements Serializable{
     public Parecer(Integer idParecer, String justificativa, TipoParecer tipoParecer, Usuario usuario, Processo processo) {
         this.idParecer = idParecer;
         this.justificativa = justificativa;
-        this.tipoParecer = tipoParecer;
+        this.tipoparecer = tipoParecer;
         this.usuario = usuario;
         this.processo = processo;
+    }
+
+    public Parecer() {
     }
 
     
@@ -70,13 +73,15 @@ public class Parecer implements Serializable{
         this.justificativa = justificativa;
     }
 
-    public TipoParecer getTipoParecer() {
-        return tipoParecer;
+    public TipoParecer getTipoparecer() {
+        return tipoparecer;
     }
 
-    public void setTipoParecer(TipoParecer tipoParecer) {
-        this.tipoParecer = tipoParecer;
+    public void setTipoparecer(TipoParecer tipoparecer) {
+        this.tipoparecer = tipoparecer;
     }
+
+ 
 
     public Usuario getUsuario() {
         return usuario;

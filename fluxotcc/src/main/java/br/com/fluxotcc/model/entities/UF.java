@@ -23,7 +23,7 @@ private static final long serialVersionUID =  1L;
 @Column(name="IdUF", nullable=false)
 private Integer idUF;
 
-@Column(name="NomeStatus", length = 20, nullable = true)
+@Column(name="NomeUF", length = 20, nullable = true)
 private String nomeStatus; 
 
 @OneToMany(mappedBy = "uf", fetch = FetchType.LAZY)

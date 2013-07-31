@@ -8,6 +8,9 @@ import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import org.hibernate.annotations.ForeignKey;
@@ -30,6 +33,17 @@ public class Turno implements Serializable {
     @OneToMany(mappedBy = "turno", fetch = FetchType.LAZY)
     @ForeignKey(name = "TurnoAluno")
     private List<Aluno> alunos;
+    
+    
+    
+  //relacionamento muitos para muitos entre turno e cursos
+  @ManyToMany
+  @JoinTable(name = "Turno_Curso",
+  joinColumns =@JoinColumn(name ="IdTurno"),
+  inverseJoinColumns=@JoinColumn(name ="IdCurso"))
+  private List<Curso> cursos;
+ 
+    
     
     public Turno() {
     }
@@ -58,7 +72,16 @@ public class Turno implements Serializable {
         this.alunos = alunos;
     }
 
+    public List<Curso> getCursos() {
+        return cursos;
+    }
+
+    public void setCursos(List<Curso> cursos) {
+        this.cursos = cursos;
+    }
+
  
+    
     
     @Override
     public int hashCode() {

@@ -37,7 +37,7 @@ private static final long serialVersionUID =  1L;
   @ManyToOne(optional=true, fetch = FetchType.LAZY)
   @ForeignKey(name = "LocalizacaoTipoUsuario") 
   @JoinColumn(name="IdTipoUsuario", referencedColumnName = "IdTipoUsuario")
-  private TipoUsuario tipoUsuario;
+  private TipoUsuario tipousuario;
  
   
   //relacionamento entre localizacao e setor
@@ -60,13 +60,15 @@ private static final long serialVersionUID =  1L;
         this.idLocalizacao = idLocalizacao;
     }
 
-    public TipoUsuario getTipoUsuario() {
-        return tipoUsuario;
+    public TipoUsuario getTipousuario() {
+        return tipousuario;
     }
 
-    public void setTipoUsuario(TipoUsuario tipoUsuario) {
-        this.tipoUsuario = tipoUsuario;
+    public void setTipousuario(TipoUsuario tipousuario) {
+        this.tipousuario = tipousuario;
     }
+
+  
 
     public List<Historico> getHistoricos() {
         return historicos;

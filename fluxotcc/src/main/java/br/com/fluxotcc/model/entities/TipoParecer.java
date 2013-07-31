@@ -32,6 +32,7 @@ public class TipoParecer implements Serializable{
     @ForeignKey(name = "ParecerTipoParecer")
     private List<Parecer> pareceres;
 
+    
     public TipoParecer() {
     }
 

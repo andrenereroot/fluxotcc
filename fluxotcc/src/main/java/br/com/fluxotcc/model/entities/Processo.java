@@ -9,6 +9,8 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
@@ -59,6 +61,14 @@ private List<Parecer> pareceres;
  @ForeignKey(name = "ProcessoStatus") 
  @JoinColumn(name="IdStatus", referencedColumnName = "IdStatus")
  private Status status;
+ 
+ //relacionamento muitos para muitos entre processo e tipo de solicitação
+  @ManyToMany
+  @JoinTable(name = "Processo_TipoSolicitacao",
+  joinColumns =@JoinColumn(name ="IdProcesso"),
+  inverseJoinColumns=@JoinColumn(name ="IdTipoSolicitacao"))
+  private List<TipoSolicitacao> tipoSolicitacoes;
+ 
 
  public Processo() {
     }
@@ -119,6 +129,15 @@ private List<Parecer> pareceres;
         this.historico = historico;
     }
 
+    public List<TipoSolicitacao> getTipoSolicitacoes() {
+        return tipoSolicitacoes;
+    }
+
+    public void setTipoSolicitacoes(List<TipoSolicitacao> tipoSolicitacoes) {
+        this.tipoSolicitacoes = tipoSolicitacoes;
+    }
+
+    
     
     
     @Override
