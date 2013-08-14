@@ -1,0 +1,92 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:c="http://java.sun.com/jsp/jstl/core"
+                xmlns:p="http://primefaces.org/ui"
+                template="./../resources/main.xhtml">
+
+    <ui:define name="tarefas">
+        <p:fieldset legend="Cadastrar Estados">
+            <br/>
+            <p:tabView dynamic="true" id="tbv1">
+                <p:tab title="Estados">
+                    <h:form prependId="false" id="formEstado">
+                        <p:growl id="msg0"/>
+                        <h:panelGrid columns="2" cellpadding="10" styleClass="panelGrid" id="grid0">
+                            <ui:remove> <h:outputLabel/> </ui:remove>
+                            
+                            <!-- inputHidden campo oculto-->
+                            <h:inputHidden id="idestado" value="#{mbUF.UF.idUF}"/>
+                            
+                            <!-- outputLabel define o nome que vai aparecer para o cliente-->
+                            <h:outputLabel for="nomeestado" value="Nome do Estado.:"/>
+                            
+                           <!--  inputText do primeface está conectado ao outputLabel nome por causa do id="nomecidade"-->
+                           <p:inputText id="nomeestado" size="40" value="#{mbUF.UF.nomeUF}" 
+                                        onkeyup="this.value = this.value.toUpperCase()" rendered="true"
+                                        requiredMessage="o campo [Nome do Estado] é obrigatório"/>
+                           
+                           <!-- <p:panel> vai agrupar nossos componentes em uma única coluna-->
+                           <p:panel>
+                               
+                               <p:commandButton value="Salvar" action="#{mbUF.addUF}" 
+                                image="ui-icon ui-icon-disk" update="@form :formtable"/>
+                               
+                               <p:commandButton value="Cancelar" actionListener="#{mbUF.limpUF}" 
+                                image="ui-icon ui-icon-close" update="@form "/>
+                               
+                           </p:panel>
+                        </h:panelGrid>
+                    </h:form>
+                </p:tab>
+            </p:tabView>
+            
+            
+            <h:form id="formtable" >
+                    <p:growl id="msg1"/>
+                    <p:dataTable id="idTabela" var="estado" value="#{mbUF.UFs}"
+                                 paginator="true"  rows="10"  emptyMessage="Nenhum registro encontrado"
+                                 paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink}
+                                 {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                                 rowsPerPageTemplate="5,10,15">
+
+                               <f:facet name="header">Lista de Estados</f:facet>
+                               <p:column>
+                                      <f:facet name="header"> 
+                                       <h:outputText value="Nome:"/>
+                                      </f:facet>
+
+                                      <h:outputText value="#{estado.nomeUF}"/>
+                               </p:column>
+
+
+                               <p:column> 
+                                   
+                                   <f:facet name="header"> 
+                                       <h:outputText value="Ação:"/>
+                                   </f:facet>
+                                  <!-- do MbEstado ou seja vai apontar para menegeben mbUF e para o objeto UF -->
+                                  <!--passa o objeto UF da linha selecionada para edita   value="#estado-->   
+                                       <p:commandButton value="Editar" image="ui-icon ui-icon-pencil"
+                                                  process="@this" update=":tbv1:formEstado">
+                                       <f:setPropertyActionListener target="#{mbUF.UF}" value="#{estado}"/>
+                                      </p:commandButton>
+                                  
+                                 <!--neste caso quq é para deletar precisa de uma acao action="#mbUF.deleteUF-->
+                                      <p:commandButton value="Remover" action="#{mbUF.deleteUF}"
+                                          image="ui-icon ui-icon-close" update="@form">
+                                      <f:setPropertyActionListener target="#{mbUF.UF}" value="#{estado}"/>
+                                      </p:commandButton>
+                               </p:column>
+
+                      </p:dataTable>  
+            </h:form>
+            
+            
+        </p:fieldset> 
+    </ui:define>
+
+</ui:composition>

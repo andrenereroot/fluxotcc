@@ -144,6 +144,14 @@ public class Aluno implements Serializable{
         this.turno = turno;
     }
 
+    public List<Processo> getProcessos() {
+        return processos;
+    }
+
+    public void setProcessos(List<Processo> processos) {
+        this.processos = processos;
+    }
+
     public Curso getCurso() {
         return curso;
     }

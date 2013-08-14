@@ -24,7 +24,7 @@ private static final long serialVersionUID =  1L;
 private Integer idUF;
 
 @Column(name="NomeUF", length = 20, nullable = true)
-private String nomeStatus; 
+private String nomeUF; 
 
 @OneToMany(mappedBy = "uf", fetch = FetchType.LAZY)
 @ForeignKey(name = "CidadeUF")
@@ -44,12 +44,12 @@ public UF() {
         this.idUF = idUF;
     }
 
-    public String getNomeStatus() {
-        return nomeStatus;
+    public String getNomeUF() {
+        return nomeUF;
     }
 
-    public void setNomeStatus(String nomeStatus) {
-        this.nomeStatus = nomeStatus;
+    public void setNomeUF(String nomeUF) {
+        this.nomeUF = nomeUF;
     }
     
      public List<Cidade> getCidades() {
